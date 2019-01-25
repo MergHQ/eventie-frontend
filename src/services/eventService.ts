@@ -5,7 +5,7 @@ const ENTRYPOINT = process.env.BE_ENTRYPOINT || 'http://localhost:4200/api'
 
 export function fetchAllUpcomingEvents(): Promise<Event[]> {
   return axios
-    .get(ENTRYPOINT + '/events')
+    .get(ENTRYPOINT + '/events/upcoming')
     .then(({data}) => createEventsFromResponse(data))
 }
 
