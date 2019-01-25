@@ -1,6 +1,8 @@
 import React from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
-import { Event } from '../../../types/InitialState';
+import {Event} from '../../../types/InitialState'
+import {sendAction} from '../../../utils/actionDispatcher'
+import { toggleEventModalAction } from '../../../utils/actions';
 
 export default class EventModal extends React.Component<{event: Event, isOpen: boolean}> {
   render() {
@@ -15,11 +17,15 @@ export default class EventModal extends React.Component<{event: Event, isOpen: b
             {description}
           </ModalBody>
           <ModalFooter>
-            <Button color="primary">Do Something</Button>{' '}
-            <Button color="secondary">Cancel</Button>
+            <Button onClick={this.closeModal} color="danger">Close</Button>
           </ModalFooter>
         </Modal>
       </div>
     )
+  }
+
+  closeModal = () => {
+    const {event, isOpen} = this.props
+    sendAction(toggleEventModalAction, {id: event.id, isOpen: isOpen})
   }
 }

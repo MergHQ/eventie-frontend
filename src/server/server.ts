@@ -12,13 +12,16 @@ server.use(express.static('dist'))
 
 server.get('/', async (req, res) => {
   const initialState = await resolveInitialState()
-  const html = ReactServer.renderToString(createApp(initialState))
-  const wrappedPage = createTemplate({
-    title: 'Eventie',
-    body: html,
-    initialState: JSON.stringify(initialState)
-  })
-  res.send(wrappedPage)
+  createApp(initialState)
+    .onValue(app => {
+      const html = ReactServer.renderToString(app)
+      const wrappedPage = createTemplate({
+        title: 'Eventie',
+        body: html,
+        initialState: JSON.stringify(initialState)
+      })
+      res.send(wrappedPage)
+    })
 })
 
 

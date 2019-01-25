@@ -1,3 +1,3 @@
 import {Action} from "./actionDispatcher"
 
-export const openEventModalAction: Action<string> = 'openEventModalAction'
+export const toggleEventModalAction: Action<{id: string, isOpen: boolean}> = 'toggleEventModalAction'

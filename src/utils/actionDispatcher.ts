@@ -14,5 +14,5 @@ export function sendAction<T>(action: Action<T>, val: T) {
 export function actionStream<T>(action: Action<T>): Bacon.EventStream<T, {}> {
   return bus
     .filter(a => a.action === action)
-    .map(a => a.value as T)
+    .map(a => a.val as T)
 }
