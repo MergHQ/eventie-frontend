@@ -1,2 +1,2 @@
 web: yarn start
-release: yarn global add typescript
+release: yarn global add typescript && yarn install
