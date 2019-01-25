@@ -1,2 +1,2 @@
 web: yarn start
-release: ./heroku_release_script.sh
+release: yarn global add typescript
