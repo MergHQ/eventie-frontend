@@ -1,4 +1,3 @@
-#!/bin/bash
 
 npm install
-npm install typescript
+npm install -g typescript
