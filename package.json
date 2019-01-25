@@ -32,7 +32,7 @@
     "@types/request-promise": "^4.1.42"
   },
   "scripts": {
-    "start": "./node_modules/.bin/webpack --env.platform=web && ./node_modules/.bin/webpack --env.platform=server && node ./dist/js/server",
+    "start": "webpack --env.platform=web && webpack --env.platform=server && node ./dist/js/server",
     "watch": "nodemon",
     "build-web": "webpack --env.platform=web",
     "build-server": "webpack --env.platform=server"
