@@ -11,7 +11,7 @@ export function fetchAllUpcomingEvents(): Promise<Event[]> {
 }
 
 export function addEvent(formData: Event): Promise<Event> {
-  return axios.post('http://localhost:4200/api/events', formData)
+  return axios.post(ENTRYPOINT + '/events', formData)
     .then(({data}: {data: Event}) => data)
 }
 
