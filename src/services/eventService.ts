@@ -1,7 +1,8 @@
 import axios from 'axios'
 import {Event} from '../types/InitialState'
+import config from '../../config.js';
 
-const ENTRYPOINT = process.env.BE_ENTRYPOINT || 'http://localhost:4200/api'
+const ENTRYPOINT = process.env.NODE_ENV === 'production' ? config.backEndEntrypoint : 'http://localhost:4200/api'
 
 export function fetchAllUpcomingEvents(): Promise<Event[]> {
   return axios
