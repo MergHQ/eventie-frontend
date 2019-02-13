@@ -10,6 +10,11 @@ export function fetchAllUpcomingEvents(): Promise<Event[]> {
     .then(({data}) => createEventsFromResponse(data))
 }
 
+export function addEvent(formData: Event): Promise<Event> {
+  return axios.post('http://localhost:4200/api/events', formData)
+    .then(({data}: {data: Event}) => data)
+}
+
 function createEventsFromResponse(rawEventData: any[]): Event[] {
   return rawEventData.map(rawEvent => ({
     id: rawEvent.id,

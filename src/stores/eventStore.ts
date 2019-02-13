@@ -2,7 +2,7 @@ import Bacon from 'baconjs'
 import { actionStream, sendAction } from '../utils/actionDispatcher'
 import { updateNewEventFormData, submitFormDataAction, toggleEventModalAction } from '../utils/actions'
 import { Event } from '../types/InitialState'
-import Axios from 'axios'
+import { addEvent } from '../services/eventService';
 
 export default function eventStore(events: Event[]) {
   const formDataS = actionStream(updateNewEventFormData)
@@ -28,7 +28,5 @@ export default function eventStore(events: Event[]) {
 }
 
 function sendFormData(formData: Event) {
-  const requestPromise = Axios.post('http://localhost:4200/api/events', formData)
-    .then(response => response.data)
-  return Bacon.fromPromise(requestPromise)
+  return Bacon.fromPromise(addEvent(formData))
 }
