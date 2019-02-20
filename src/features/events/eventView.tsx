@@ -2,21 +2,19 @@ import React from 'react'
 import Bacon from 'baconjs'
 import {Event} from '../../types/InitialState'
 import EventCard from './components/EventCard'
-import eventModalStore from '../../stores/eventModalStore'
 import NewEventCard from './components/NewEventCard'
 import eventStore from '../../stores/eventStore'
 
-export default function createEventView(events: Event[]) {
-  const eventModalToggleP = eventModalStore()
+export default function createEventView(events: Event[], modalStoreP: Bacon.Property<any, {id: string, isOpen: boolean}>) {
   const eventStoreP = eventStore(events)
 
   return Bacon.combineTemplate({
-    eventModalToggle: eventModalToggleP,
-    eventStore: eventStoreP
-  }).map(({eventModalToggle, eventStore}) => {
+    eventStore: eventStoreP,
+    modalStore: modalStoreP
+  }).map(({eventStore, modalStore}) => {
     return (
       <div>
-        {listEvents(eventStore.events, eventModalToggle, eventStore)}
+        {listEvents(eventStore.events, modalStore, eventStore)}
       </div>
     )
   })

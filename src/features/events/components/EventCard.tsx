@@ -15,7 +15,7 @@ export default class EventCard extends React.Component<{event: Event, isModalOpe
           <CardBody>
             <CardTitle>{name}</CardTitle>
             <CardSubtitle>{new Date(time).toLocaleDateString()}</CardSubtitle>
-            <Button onClick={this.toggle}>Button</Button>
+            <Button onClick={this.toggle}>Details</Button>
           </CardBody>
         </Card>
       </div>

@@ -2,7 +2,7 @@ import Bacon from 'baconjs'
 import {actionStream} from '../utils/actionDispatcher'
 import {toggleEventModalAction} from '../utils/actions'
 
-export default function eventModalStore() {
+export default function modalStore() {
   const toggleModalS = actionStream(toggleEventModalAction)
     .log()
   return Bacon.update({id: '', isOpen: false}, 

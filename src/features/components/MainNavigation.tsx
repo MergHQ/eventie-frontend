@@ -7,8 +7,11 @@ import {
   Nav,
   NavItem,
   NavLink} from 'reactstrap'
+import { sendAction } from '../../utils/actionDispatcher'
+import { toggleEventModalAction, fetchUserDetails } from '../../utils/actions'
+import { User } from '../../services/userService'
 
-export default class MainNaviagation extends React.Component<{}, {isOpen: boolean}> {
+export default class MainNaviagation extends React.Component<{loggedUser: User, isUserLoading: boolean}, {isOpen: boolean}> {
   constructor(props: any) {
     super(props)
 
@@ -24,7 +27,15 @@ export default class MainNaviagation extends React.Component<{}, {isOpen: boolea
     })
   }
 
+  componentDidMount() {
+    if (typeof window !== 'undefined') {
+      sendAction(fetchUserDetails, null)
+    }
+  }
+
   render() {
+    const {loggedUser, isUserLoading} = this.props
+
     return (
       <div>
         <Navbar color="light" light expand="md">
@@ -37,6 +48,9 @@ export default class MainNaviagation extends React.Component<{}, {isOpen: boolea
               </NavItem>
               <NavItem>
                 <NavLink href="#">Past events</NavLink>
+              </NavItem>
+              <NavItem>
+                {isUserLoading ? 'Loading...' : <NavLink href="#" onClick={() => sendAction(toggleEventModalAction, {id: 'login', isOpen: false})}>{!loggedUser.username ? 'Log in' : `Hello, ${loggedUser.username}`}</NavLink>}
               </NavItem>
             </Nav>
           </Collapse>
