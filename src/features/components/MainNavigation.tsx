@@ -50,7 +50,7 @@ export default class MainNaviagation extends React.Component<{loggedUser: User, 
                 <NavLink href="#">Past events</NavLink>
               </NavItem>
               <NavItem>
-                {isUserLoading ? 'Loading...' : <NavLink href="#" onClick={() => sendAction(toggleEventModalAction, {id: 'login', isOpen: false})}>{!loggedUser.username ? 'Log in' : `Hello, ${loggedUser.username}`}</NavLink>}
+                {isUserLoading ? 'Loading...' : <NavLink href="#" onClick={() => sendAction(toggleEventModalAction, {id: loggedUser.username ? 'userDetails' : 'login', isOpen: false})}>{!loggedUser.username ? 'Log in' : `Hello, ${loggedUser.username}`}</NavLink>}
               </NavItem>
             </Nav>
           </Collapse>
