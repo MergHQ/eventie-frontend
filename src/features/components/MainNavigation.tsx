@@ -6,7 +6,8 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink} from 'reactstrap'
+  NavLink
+} from 'reactstrap'
 import { sendAction } from '../../utils/actionDispatcher'
 import { toggleEventModalAction, fetchUserDetails } from '../../utils/actions'
 import { User } from '../../services/userService'

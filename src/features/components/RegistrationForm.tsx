@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Button } from 'reactstrap'
 import { sendAction } from '../../utils/actionDispatcher'
 import { updateUserRegistrationFormData, submitNewUserData } from '../../utils/actions'
 
@@ -10,19 +10,19 @@ export default function RegistrationForm(props: {username: string, name: string,
       <Form onSubmit={onUserRegistration}>
         <FormGroup>
           <Label for="name">Username</Label>
-          <Input type="text" name="name" id="name" value={username} onChange={e => updateFormData(e, 'username')} placeholder="username" />
+          <Input type="text" name="name" id="name" value={username} onChange={e => updateFormData(e, 'username')} placeholder="username" required />
         </FormGroup>
         <FormGroup>
           <Label for="name">Name</Label>
-          <Input type="text" name="name" id="name" value={name} onChange={e => updateFormData(e, 'name')} placeholder="password" />
+          <Input type="text" name="name" id="name" value={name} onChange={e => updateFormData(e, 'name')} placeholder="name" required />
         </FormGroup>
         <FormGroup>
           <Label for="name">Email</Label>
-          <Input type="text" name="name" id="name" value={email} onChange={e => updateFormData(e, 'email')} placeholder="password" />
+          <Input type="email" name="name" id="name" value={email} onChange={e => updateFormData(e, 'email')} placeholder="a@b.com" required />
         </FormGroup>
         <FormGroup>
           <Label for="name">Password</Label>
-          <Input type="password" name="name" id="name" value={password} onChange={e => updateFormData(e, 'password')} placeholder="password" />
+          <Input type="password" name="name" id="name" value={password} onChange={e => updateFormData(e, 'password')} placeholder="password"  required/>
         </FormGroup>
         <Button>Submit</Button>
       </Form>

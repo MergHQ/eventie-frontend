@@ -9,11 +9,11 @@ export default function LoginForm(props: {username: string, password: string}) {
     <Form onSubmit={onLogin}>
       <FormGroup>
         <Label for="name">Name</Label>
-        <Input type="text" name="name" id="name" value={username} onChange={e => updateFormData(e, 'username')} placeholder="username" />
+        <Input type="text" name="name" id="name" value={username} onChange={e => updateFormData(e, 'username')} placeholder="username" required />
       </FormGroup>
       <FormGroup>
         <Label for="name">Name</Label>
-        <Input type="password" name="name" id="name" value={password} onChange={e => updateFormData(e, 'password')} placeholder="password" />
+        <Input type="password" name="name" id="name" value={password} onChange={e => updateFormData(e, 'password')} placeholder="password" required />
       </FormGroup>
       <Button>Submit</Button>
     </Form>
