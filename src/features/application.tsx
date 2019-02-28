@@ -9,12 +9,13 @@ import LoginModal from './components/LoginModal'
 import authStore from '../stores/authStore'
 import userStore from '../stores/userStore'
 import UserDetailModal from './components/UserDetailsModal';
+import { ErrorModal } from './components/ErrorModal';
 
 export default function createApp(initialState: InitialState) {
   const modalStoreP = modalStore()
-  const eventViewP = createEventView(initialState.events, modalStoreP)
-  const authStoreP = authStore()
   const userStoreP = userStore()
+  const eventViewP = createEventView(initialState.events, modalStoreP, userStoreP)
+  const authStoreP = authStore()
 
   return Bacon.combineTemplate({
     eventView: eventViewP,
@@ -24,8 +25,10 @@ export default function createApp(initialState: InitialState) {
   }).map(({eventView, modalStore, authStore, userStore}) => {
     const loginIsOpen = modalStore.id === 'login' && modalStore.isOpen
     const isUserDetailsOpen = modalStore.id === 'userDetails' && modalStore.isOpen
+    const {errorModalOpen, errorModalMessage} = modalStore
     return (
       <Container>
+        <ErrorModal isOpen={errorModalOpen} message={errorModalMessage} />
         <LoginModal isOpen={loginIsOpen} creds={authStore} newUser={userStore.newUser} registrationOpen={modalStore.registrationOpen} />
         <UserDetailModal user={userStore.loggedUser} isOpen={isUserDetailsOpen} />
         <MainNaviagation loggedUser={userStore.loggedUser} isUserLoading={userStore.isLoading} />

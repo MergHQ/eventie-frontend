@@ -6,7 +6,8 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink
+  NavLink,
+  Spinner
 } from 'reactstrap'
 import { sendAction } from '../../utils/actionDispatcher'
 import { toggleEventModalAction, fetchUserDetails } from '../../utils/actions'
@@ -51,7 +52,7 @@ export default class MainNaviagation extends React.Component<{loggedUser: User, 
                 <NavLink href="#">Past events</NavLink>
               </NavItem>
               <NavItem>
-                {isUserLoading ? 'Loading...' : <NavLink href="#" onClick={() => sendAction(toggleEventModalAction, {id: loggedUser.username ? 'userDetails' : 'login', isOpen: false})}>{!loggedUser.username ? 'Log in' : `Hello, ${loggedUser.username}`}</NavLink>}
+                {isUserLoading ? <Spinner color="black" /> : <NavLink href="#" onClick={() => sendAction(toggleEventModalAction, {id: loggedUser.username ? 'userDetails' : 'login', isOpen: false})}>{!loggedUser.username ? 'Log in' : `Hello, ${loggedUser.username}`}</NavLink>}
               </NavItem>
             </Nav>
           </Collapse>

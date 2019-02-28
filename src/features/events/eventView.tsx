@@ -5,23 +5,24 @@ import EventCard from './components/EventCard'
 import NewEventCard from './components/NewEventCard'
 import eventStore from '../../stores/eventStore'
 
-export default function createEventView(events: Event[], modalStoreP: Bacon.Property<any, {id: string, isOpen: boolean}>) {
+export default function createEventView(events: Event[], modalStoreP: Bacon.Property<any, {id: string, isOpen: boolean}>, userStoreP: Bacon.Property<{}, {}>) {
   const eventStoreP = eventStore(events)
 
   return Bacon.combineTemplate({
     eventStore: eventStoreP,
-    modalStore: modalStoreP
-  }).map(({eventStore, modalStore}) => {
+    modalStore: modalStoreP,
+    userStore: userStoreP
+  }).map(({eventStore, modalStore, userStore}) => {
     return (
       <div>
-        {listEvents(eventStore.events, modalStore, eventStore)}
+        {listEvents(eventStore.events, modalStore, eventStore, userStore)}
       </div>
     )
   })
 }
 
-function listEvents(events: Event[], {id, isOpen}: {id: string, isOpen: boolean}, eventStore: any) {
+function listEvents(events: Event[], {id, isOpen}: {id: string, isOpen: boolean}, eventStore: any, userStore: any) {
   return (<div>{events.map(event => (
-    <EventCard event={event} isModalOpen={event.id === id ? isOpen : false} />
+    <EventCard event={event} isModalOpen={event.id === id ? isOpen : false} user={userStore.loggedUser} />
   ))}<NewEventCard isModalOpen={'newEvent' === id ? isOpen : false} formData={eventStore.newEvent} /></div>)
 }
