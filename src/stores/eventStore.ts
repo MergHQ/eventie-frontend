@@ -66,7 +66,7 @@ export default function eventStore(events: Event[]) {
         sendAction(yoDawgHeardYouLikeModals, {isOpen: false, message: nv.error})
         return iv
       }
-
+      sendAction(toggleEventModalAction, {id: nv.id, isOpen: true})
       const oldEventIDx = iv.events.findIndex(({id}) => id === nv.id)
       return {...iv, newEvent: {}, events: R.pipe((events: Event[]) => R.reject(({id}) => id === nv.id, events), R.insert(oldEventIDx, nv))(iv.events)}
     }
