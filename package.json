@@ -32,7 +32,8 @@
     "webpack-cli": "^3.2.1"
   },
   "scripts": {
-    "start": "webpack --env.platform=web && webpack --env.platform=server && node ./dist/js/server",
+    "start": "node ./dist/js/server",
+    "build": "webpack --env.platform=web && webpack --env.platform=server",
     "watch": "nodemon",
     "build-web": "webpack --env.platform=web",
     "build-server": "webpack --env.platform=server"
