@@ -10,12 +10,14 @@ export default class EventModal extends React.Component<{event: Event, isOpen: b
     const {isOpen} = this.props
     const {name, description, participants, maxParticipants, id} = this.props.event
     const {id: userId} = this.props.user
+    const {name: author_name} = this.props.event.author
 
     return (
       <div>
         <Modal isOpen={isOpen}>
           <ModalHeader>{name}</ModalHeader>
           <ModalBody>
+            <p>{`By: ${author_name}`}</p>
             {description}
             {registrationButton({maxParticipants, participants, userId, eventId: id})}
             <EnrollmentList maxParticipants={maxParticipants} participants={participants} />

@@ -52,7 +52,14 @@ export default function eventStore(events: Event[]) {
 }
 
 function sendFormData(formData: Event) {
-  return Bacon.fromPromise(addEvent(formData))
+  if (typeof window !== 'undefined') {
+    const token = window.localStorage.getItem('eventie_token')
+    if (!token) {
+      return Bacon.fromPromise(Promise.reject({error: 'Not logged in'}))
+    }
+
+    return Bacon.fromPromise(addEvent(formData, token))
+  }
 }
 
 function enrollToEventRequest(eventId: string): Bacon.EventStream<{}, {eventId: string, user: User} | {error: string}> {

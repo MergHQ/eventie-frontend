@@ -10,5 +10,9 @@ export interface Event {
   registrationStart: Date,
   registrationEnd: Date,
   maxParticipants: number
+  author: {
+    id: string,
+    name: string
+  }
   participants: Array<{id: string, username: string}>
 }

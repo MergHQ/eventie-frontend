@@ -11,12 +11,17 @@ export function fetchAllUpcomingEvents(): Promise<Event[]> {
     .then(({data}) => createEventsFromResponse(data))
 }
 
-export function addEvent(formData: Event): Promise<Event | {error: string}> {
-  return axios.post(ENTRYPOINT + '/events', formData)
+export function addEvent(formData: Event, token: string): Promise<Event | {error: string}> {
+  const opts = {
+    headers: {
+      'Authorization': token
+    }
+  }
+  return axios.post(ENTRYPOINT + '/events', formData, opts)
     .then(({data}: {data: Event}) => data)
     .catch((e: AxiosError) => {
       console.log(e)
-      return {error: e.response ? e.response.data : 'Error making request'}
+      return {error: e.response ? e.response.data.error : 'Error making request'}
     })
 }
 
@@ -43,6 +48,10 @@ function createEventsFromResponse(rawEventData: any[]): Event[] {
     registrationStart: rawEvent.registration_start,
     registrationEnd: rawEvent.registration_end,
     maxParticipants: rawEvent.max_participants,
+    author: {
+      id: rawEvent.author.id,
+      name: rawEvent.author.name
+    },
     participants: rawEvent.participants
   }))
 }
