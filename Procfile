@@ -1,2 +1,2 @@
 web: yarn start
-release: yarn global add typescript webpack webpack-cli && yarn install && yarn build
+release: yarn global add typescript webpack webpack-cli && yarn install
