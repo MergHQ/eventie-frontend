@@ -68,7 +68,7 @@ export default function eventStore(events: Event[]) {
       }
 
       const oldEventIDx = iv.events.findIndex(({id}) => id === nv.id)
-      return {...iv, events: R.pipe((events: Event[]) => R.reject(({id}) => id === nv.id, events), R.insert(oldEventIDx, nv))(iv.events)}
+      return {...iv, newEvent: {}, events: R.pipe((events: Event[]) => R.reject(({id}) => id === nv.id, events), R.insert(oldEventIDx, nv))(iv.events)}
     }
   )
 }
