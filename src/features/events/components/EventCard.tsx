@@ -6,12 +6,12 @@ import {sendAction} from '../../../utils/actionDispatcher'
 import {toggleEventModalAction} from '../../../utils/actions'
 import { User } from '../../../services/userService'
 
-export default class EventCard extends React.Component<{event: Event, isModalOpen: boolean, user: User}> {
+export default class EventCard extends React.Component<{event: Event, isModalOpen: boolean, user: User, updateFormState: {eventEditVisible: boolean, eventEditVisibleId: string, newEvent: Event}}> {
   render() {
     const {id, name, time, maxParticipants, participants} = this.props.event
     return (
       <div id={id}>
-        <EventModal event={this.props.event} isOpen={this.props.isModalOpen} user={this.props.user} />
+        <EventModal event={this.props.event} isOpen={this.props.isModalOpen} user={this.props.user} updateFormState={this.props.updateFormState} />
         <Card>
           <CardBody>
             <CardTitle>{name}</CardTitle>

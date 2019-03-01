@@ -21,8 +21,8 @@ export default function createEventView(events: Event[], modalStoreP: Bacon.Prop
   })
 }
 
-function listEvents(events: Event[], {id, isOpen}: {id: string, isOpen: boolean}, eventStore: any, userStore: any) {
+function listEvents(events: Event[], {id, isOpen, eventEditVisible, eventEditVisibleId}: {id: string, isOpen: boolean, eventEditVisible: boolean, eventEditVisibleId: string}, eventStore: any, userStore: any) {
   return (<div>{events.map(event => (
-    <EventCard event={event} isModalOpen={event.id === id ? isOpen : false} user={userStore.loggedUser} />
+    <EventCard event={event} isModalOpen={event.id === id ? isOpen : false} user={userStore.loggedUser} updateFormState={{eventEditVisible, eventEditVisibleId, newEvent: eventStore.newEvent}} />
   ))}<NewEventCard isModalOpen={'newEvent' === id ? isOpen : false} formData={eventStore.newEvent} /></div>)
 }

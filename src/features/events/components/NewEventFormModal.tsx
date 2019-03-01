@@ -23,15 +23,15 @@ export default class NewEventFormModal extends React.Component<{event: Event, is
             </FormGroup>
             <FormGroup>
               <Label for="regstart">Start of registration</Label>
-              <Input type="date" name="registration_start" value={registrationStart ? registrationStart.toISOString().split('T')[0] : null} onChange={e => this.updateFormData(e, 'registration_start')} id="regstart" />
+              <Input type="date" name="registration_start" value={registrationStart ? new Date(registrationStart).toISOString().split('T')[0] : null} onChange={e => this.updateFormData(e, 'registration_start')} id="regstart" />
             </FormGroup>
             <FormGroup>
               <Label for="regend">End of registration</Label>
-              <Input type="date" name="registration_end" value={registrationEnd ? registrationEnd.toISOString().split('T')[0]  : null} onChange={e => this.updateFormData(e, 'registration_end')} id="regend" />
+              <Input type="date" name="registration_end" value={registrationEnd ? new Date(registrationEnd).toISOString().split('T')[0]  : null} onChange={e => this.updateFormData(e, 'registration_end')} id="regend" />
             </FormGroup>
             <FormGroup>
               <Label for="time">Time of event</Label> 
-              <Input type="date" name="time" value={time ? time.toISOString().split('T')[0]  : null} onChange={e => this.updateFormData(e, 'time')} id="time" />
+              <Input type="date" name="time" value={time ? new Date(time).toISOString().split('T')[0]  : null} onChange={e => this.updateFormData(e, 'time')} id="time" />
             </FormGroup>
             <FormGroup>
               <Label for="number">Max number of participants</Label>
