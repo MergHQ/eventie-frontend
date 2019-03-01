@@ -46,12 +46,6 @@ export default class MainNaviagation extends React.Component<{loggedUser: User, 
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="#">Upcoming events</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="#">Past events</NavLink>
-              </NavItem>
-              <NavItem>
                 {isUserLoading ? 
                 <Spinner color="dark" /> : 
                 <NavLink href="#" onClick={() => sendAction(toggleEventModalAction, {id: loggedUser.username ? 'userDetails' : 'login', isOpen: false})}>{!loggedUser.username ? 'Log in' : `Hello, ${loggedUser.username}`}</NavLink>}
